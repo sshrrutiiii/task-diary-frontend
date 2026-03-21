@@ -1,38 +1,451 @@
-.App {
-  text-align: center;
+/* =========================================
+   BASE VARIABLES & RESET
+   ========================================= */
+:root {
+  --bg-color: #f9f9f9;
+  --text-color: #333;
+  --sidebar-bg: #fff;
+  --card-bg: #fff;
+  --primary-color: #e6c280; /* Beige default */
+  --border-color: #eaeaea;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Dark Mode Overrides */
+.dark-mode {
+  --bg-color: #1a1a1a;
+  --text-color: #f1f1f1;
+  --sidebar-bg: #222;
+  --card-bg: #2a2a2a;
+  --border-color: #444;
+  --primary-color: #a0a0a0; 
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden;
+}
+
+/* =========================================
+   THEME COLORS (Matches App.js dropdown)
+   ========================================= */
+.theme-matchagreen {
+  --primary-color: #8da384;
+  --card-bg: rgba(141, 163, 132, 0.2);
+}
+
+.theme-oceanblue {
+  --primary-color: #84a0a3;
+  --card-bg: rgba(132, 160, 163, 0.2);
+}
+
+.theme-pink {
+  --primary-color: #ffb6b9;
+  --card-bg: rgba(255, 182, 185, 0.2);
+}
+
+.theme-beige {
+  --primary-color: #e6c280;
+  --card-bg: rgba(245, 245, 220, 0.15);
+}
+
+/* =========================================
+   APP LAYOUT & SIDEBAR
+   ========================================= */
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--bg-color); 
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.app-sidebar {
+  width: 250px;
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
+}
+
+.sidebar-brand {
+  padding: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 10px 0;
+}
+
+.sidebar-nav li {
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sidebar-nav li:hover, .sidebar-nav li.active {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-right: 4px solid var(--primary-color);
+  font-weight: 600;
+}
+.dark-mode .sidebar-nav li:hover, .dark-mode .sidebar-nav li.active {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--primary-color) !important;
+  border-right-color: var(--primary-color) !important;
+}
+
+/* =========================================
+   MAIN CONTENT & HEADER
+   ========================================= */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-selector {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+/* =========================================
+   DASHBOARD GRID & CONTAINERS
+   ========================================= */
+.dashboard-layout {
+  display: flex;
+  padding: 30px;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.task-section {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.calendar-section {
+  flex: 1;
+  min-width: 300px;
+}
+
+.add-task-container, .task-list-container, .diary-calendar-container {
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+/* =========================================
+   TASK STYLES
+   ========================================= */
+.add-task-form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.add-task-form input, .add-task-form select {
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--bg-color);
+  color: var(--text-color);
+  flex: 1;
+  min-width: 120px;
+}
+
+.task-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: all 0.2s ease;
+}
+
+.task-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.task-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--primary-color);
+}
+
+.task-text h4 { margin-bottom: 4px; }
+.task-text p { margin-bottom: 4px; font-size: 0.9rem; color: #777; }
+
+.task-completed {
+  opacity: 0.6;
+  background-color: rgba(0,0,0,0.02);
+}
+.dark-mode .task-completed { background-color: rgba(255,255,255,0.02); }
+
+.task-completed .task-text h4, 
+.task-completed .task-text p {
+  text-decoration: line-through;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.delete-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* =========================================
+   PROGRESS BAR
+   ========================================= */
+.progress-container {
+  background: var(--card-bg);
+  padding: 15px 25px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+.dark-mode .progress-header {
+  color: var(--primary-color) !important;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 10px;
+  background-color: var(--border-color);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  transition: width 0.4s ease-in-out;
+}
+
+/* =========================================
+   BUTTONS & ICONS
+   ========================================= */
+.add-btn, .add-task-form button {
+  background-color: var(--primary-color) !important;
+  color: #1a1a1a !important; 
+  border: none !important;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold !important;
+  transition: transform 0.1s ease;
+}
+
+.add-btn:active {
+  transform: scale(0.95);
+}
+
+.dark-mode-icon-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px;
+  margin-left: 10px;
+  transition: transform 0.2s ease;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  color: var(--text-color);
+}
+.dark-mode-icon-btn:hover {
+  transform: scale(1.15);
+}
+.dark-mode .dark-mode-icon-btn {
+  color: var(--primary-color) !important; 
 }
 
-.App-link {
-  color: #61dafb;
+/* Priority Badges & Bulb */
+.bulb-on { filter: grayscale(0%); opacity: 1; }
+.bulb-off { filter: grayscale(100%); opacity: 0.3; }
+
+/* =========================================
+   TYPOGRAPHY THEME FIXES
+   ========================================= */
+.app-header h2, 
+.add-task-container h3, 
+.task-list-container h3,
+.diary-calendar-container h3,
+.control-group label {
+  color: var(--text-color);
+  text-shadow: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.add-task-container h3, 
+.task-list-container h3,
+.diary-calendar-container h3 {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 10px;
+}
+
+.app-header h2 { font-size: 1.5rem; }
+.control-group label { font-size: 0.95rem; font-weight: 600; }
+
+.dark-mode .app-header h2, 
+.dark-mode .add-task-container h3, 
+.dark-mode .task-list-container h3,
+.dark-mode .diary-calendar-container h3,
+.dark-mode .control-group label {
+  color: var(--primary-color) !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5); 
+}
+
+/* =========================================
+   VIDEO BACKGROUND SETTINGS
+   ========================================= */
+.video-background {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  object-fit: cover !important;
+  z-index: -100 !important; 
+}
+
+.app-container.video-mode {
+  background-color: transparent !important;
+}
+
+/* Glassmorphism for Light Mode */
+.app-container.video-mode .app-sidebar,
+.app-container.video-mode .app-header,
+.app-container.video-mode .add-task-container, 
+.app-container.video-mode .task-list-container, 
+.app-container.video-mode .diary-calendar-container,
+.app-container.video-mode .progress-container {
+  background-color: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Glassmorphism for Dark Mode */
+.dark-mode.video-mode .app-sidebar,
+.dark-mode.video-mode .app-header,
+.dark-mode.video-mode .add-task-container, 
+.dark-mode.video-mode .task-list-container, 
+.dark-mode.video-mode .diary-calendar-container,
+.dark-mode.video-mode .progress-container {
+  background-color: rgba(26, 26, 26, 0.75) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* =========================================
+   CALENDAR TRANSPARENCY
+   ========================================= */
+.diary-calendar-container .react-calendar,
+.diary-calendar-container .react-calendar *,
+.react-calendar {
+  background: transparent !important; 
+  background-color: transparent !important;
+  color: var(--text-color) !important;
+  border: none !important;
+  width: 100% !important;
+  font-family: inherit !important;
+}
+
+.react-calendar__navigation button {
+  color: var(--text-color) !important;
+  background: transparent !important;
+  font-weight: bold !important;
+}
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: rgba(128, 128, 128, 0.2) !important;
+  border-radius: 6px;
+}
+
+.react-calendar__month-view__days__day {
+  color: var(--text-color) !important;
+}
+.react-calendar__tile {
+  background: transparent !important;
+  padding: 10px 6px !important;
+}
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: rgba(128, 128, 128, 0.2) !important;
+  border-radius: 6px;
+}
+
+.react-calendar__month-view__days__day--weekend {
+   color: #d10000 !important;
+}
+.dark-mode .react-calendar__month-view__days__day--weekend {
+   color: #ff6b6b !important;
+}
+
+.react-calendar__tile--active,
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background-color: var(--primary-color) !important;
+  color: #1a1a1a !important;
+  font-weight: bold !important;
+  border-radius: 6px !important;
 }

@@ -1,0 +1,78 @@
+.diary-calendar-container {
+  padding: 20px;
+  /* Using your app's theme variables so it adapts to light/dark mode! */
+  background-color: var(--card-bg, #ffffff);
+  color: var(--text-color, #333333);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 350px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Soft shadow for light mode */
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.calendar-header button {
+  /* Adapts button colors to your theme */
+  background: var(--border-color, #eaeaea);
+  border: none;
+  color: var(--text-color, #333);
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px 15px;
+  border-radius: 5px;
+  transition: opacity 0.2s;
+}
+
+.calendar-header button:hover {
+  opacity: 0.7;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.day-name {
+  font-size: 0.8rem;
+  font-weight: bold;
+  opacity: 0.7;
+  margin-bottom: 5px;
+}
+
+.day {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.day:not(.empty):hover {
+  /* Uses your theme's border color for the hover effect */
+  background-color: var(--border-color, rgba(0, 0, 0, 0.1));
+}
+
+.active-day {
+  background-color: #fca311;
+  color: #14213d;
+  font-weight: bold;
+}
+
+.calendar-footer {
+  text-align: center;
+  font-size: 0.9rem;
+  border-top: 1px solid var(--border-color, #eaeaea);
+  padding-top: 15px;
+}
