@@ -1,70 +1,155 @@
-# Getting Started with Create React App
+# 🌿 Mellow
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Mellow** is a calming **Lo-fi inspired productivity web app** designed to help you stay focused while managing your daily tasks.
 
-## Available Scripts
+It combines **task management, focus tools, and relaxing ambiance** to create a peaceful environment for studying, planning, or deep work.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+# 🎬 Demo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Task Management
+![ScreenRecording2026-03-22011927-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/4af04fc1-e18d-4c5b-bf61-6759af87d921)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Theme Customization
+![ScreenRecording2026-03-22011927-ezgif com-video-to-gif-converter (1)](https://github.com/user-attachments/assets/9b2a3c03-af98-4f13-a80e-70b70f8febe3)
 
-### `npm test`
+### Focus Time
+![ScreenRecording2026-03-22011927-ezgif com-video-to-gif-converter (2)](https://github.com/user-attachments/assets/b8b4bce0-1485-4300-92fe-77ac3efc95ee)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Lofi Music Player
+![ScreenRecording2026-03-22011927-ezgif com-video-to-gif-converter (3)](https://github.com/user-attachments/assets/b10db7f9-786d-4daf-a2b4-1d0959161d08)
 
-### `npm run build`
+### Diary Notes
+![ScreenRecording2026-03-22011927-ezgif com-video-to-gif-converter (4)](https://github.com/user-attachments/assets/a675ba5b-1ff4-4da9-93c6-2ae459d69b95)
+![ScreenRecording2026-03-22011927-ezgif com-video-to-gif-converter (5)](https://github.com/user-attachments/assets/80834100-986c-4c11-867e-4f71c7c82565)
+![ScreenRecording2026-03-22011927-ezgif com-video-to-gif-converter (8)](https://github.com/user-attachments/assets/57060af1-b60b-4daa-882a-f5a0cafffa91)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# ✨ Features
 
-### `npm run eject`
+### 🔐 Authentication
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Secure **login and signup system** for managing personal tasks.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### ✅ Task Management
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Easily organize your work by:
 
-## Learn More
+* Adding tasks
+* Editing tasks
+* Deleting tasks
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 📅 Calendar Integration
 
-### Code Splitting
+Plan your schedule with an **interactive calendar view** and manage tasks by date.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+### ⏰ Focus Timer
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Built-in **focus timer** to help track study or work sessions.
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 🎧 Lo-fi Music Player
 
-### Advanced Configuration
+Listen to **relaxing background music** while working.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+### 🧘 Zen Mode
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+A **distraction-free interface** designed to help you concentrate deeply.
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# 📸 Screenshots
+
+### Home
+
+<img width="1899" height="900" src="https://github.com/user-attachments/assets/bbb2d72a-f70c-4d83-90b0-0d9044c39d0b" />
+
+### Task Manager
+
+<img width="1897" height="903" src="https://github.com/user-attachments/assets/d7092fb3-2ed8-4453-9260-2211e89b4b1a" />
+
+### Zen Break
+
+<img width="1873" height="885" src="https://github.com/user-attachments/assets/6e4b2c4c-101c-4830-a9ff-6e54d45bec27" />
+
+### Diary Notes
+
+<img width="1904" height="906" src="https://github.com/user-attachments/assets/a92518e9-68fd-4c92-8a0b-3b389d966638" />
+
+### Calendar
+
+<img width="1904" height="909" src="https://github.com/user-attachments/assets/2ae0fea9-2123-4874-8a04-5cbe05ed3011" />
+
+### Login Page
+
+<img width="1910" height="897" src="https://github.com/user-attachments/assets/70a1cab0-5fb3-457f-8927-61d0cc59d89f" />
+
+### Signup Page
+
+<img width="1917" height="904" src="https://github.com/user-attachments/assets/1e20fb4f-3bed-4dcb-a32d-44a7afe77ab5" />
+
+---
+
+# 🚀 Tech Stack
+
+**Frontend**
+
+* React.js
+* JavaScript
+* CSS
+
+**Backend**
+
+* Spring Boot
+* Java
+* REST API
+
+Backend Repository: [task-diary-backend](https://github.com/sshrrutiiii/task-diary-backend)
+
+---
+
+# ⚙️ Installation
+
+Clone the repository and run locally.
+
+```bash
+git clone https://github.com/sshrrutiiii/task-diary-frontend.git
+cd task-diary-frontend
+npm install
+npm start
+```
+
+Then open:
+
+```
+http://localhost:3000
+```
+
+---
+
+# 💡 Future Improvements
+
+* Mobile responsive design
+* More music playlists
+* Cloud task synchronization
+* Additional UI themes
+
+---
+
+# 👩‍💻 Author
+
+**Shruti Dixit**
+
+Full-stack learning project built using **React and Spring Boot**.
+
+---
+
+# ⭐ Support
+
+If you like this project, consider **starring the repository ⭐**.
+
