@@ -26,7 +26,7 @@ const videoMap = {
   'video-4': bg4, 'video-5': bg5, 'video-6': bg6, 'video-7': bg7,
 };
 
-const API_URL = 'http://localhost:8080/api/tasks';
+const API_URL = `${process.env.REACT_APP_API_URL}/api/tasks`;
 const TEST_USER_ID = 1; 
 
 function App() {
