@@ -24,7 +24,7 @@ function SignUp({ onNavigateToLogin, setLoggedInUser }) {
     setIsError(false);
 
     // Assuming your Spring Boot backend has a register endpoint like this:
-    axios.post("http://localhost:8080/api/users/register", { name, email, password })
+    axios.post(`${process.env.REACT_APP_API_URL}/api/users/register`, { name, email, password })
       .then(res => {
         setMessage("Account created successfully!");
         setIsError(false);
