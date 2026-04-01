@@ -8,10 +8,6 @@
 
 A full-stack productivity web app combining task management, focus timer, diary notes, and relaxing Lo-fi music to help users stay focused.
 
-**Mellow** is a calming **Lo-fi inspired productivity web app** designed to help you stay focused while managing your daily tasks.
-
-It combines **task management, focus tools, and relaxing ambiance** to create a peaceful environment for studying, planning, or deep work.
-
 ## 🚀 Live Project
 
 🌐 Frontend (Vercel):  
@@ -113,12 +109,13 @@ A **distraction-free interface** designed to help you concentrate deeply.
 # 🚀 Tech Stack
 
 **Frontend**
-Axios / Fetch API
 
 * React.js
 * JavaScript
 * CSS
+- Axios / Fetch API
 
+  
 **Backend**
 
 * Spring Boot
@@ -146,7 +143,6 @@ npm install
 npm start
 ```
 
-Then open:
 
 ```
 Then open the app in your browser:
