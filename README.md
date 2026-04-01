@@ -1,9 +1,24 @@
 # 🌿 Mellow
 
+![React](https://img.shields.io/badge/Frontend-React-blue)
+![Spring Boot](https://img.shields.io/badge/Backend-SpringBoot-green)
+![Vercel](https://img.shields.io/badge/Deployed-Vercel-black)
+![Render](https://img.shields.io/badge/API-Render-purple)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+
+A full-stack productivity web app combining task management, focus timer, diary notes, and relaxing Lo-fi music to help users stay focused.
+
 **Mellow** is a calming **Lo-fi inspired productivity web app** designed to help you stay focused while managing your daily tasks.
 
 It combines **task management, focus tools, and relaxing ambiance** to create a peaceful environment for studying, planning, or deep work.
 
+## 🚀 Live Project
+
+🌐 Frontend (Vercel):  
+https://task-diary-frontend.vercel.app  
+
+⚙️ Backend API (Render):  
+https://task-diary-backend-1.onrender.com
 ---
 
 # 🎬 Demo
@@ -98,6 +113,7 @@ A **distraction-free interface** designed to help you concentrate deeply.
 # 🚀 Tech Stack
 
 **Frontend**
+Axios / Fetch API
 
 * React.js
 * JavaScript
@@ -108,10 +124,16 @@ A **distraction-free interface** designed to help you concentrate deeply.
 * Spring Boot
 * Java
 * REST API
+* JPA / Hibernate
 
 Backend Repository: [task-diary-backend](https://github.com/sshrrutiiii/task-diary-backend)
 
 ---
+
+## 🧠 Architecture
+
+React Frontend → REST API → Spring Boot Backend → PostgreSQL/MySQL Database
+
 
 # ⚙️ Installation
 
@@ -127,10 +149,19 @@ npm start
 Then open:
 
 ```
+Then open the app in your browser:
+
 http://localhost:3000
+
 ```
 
 ---
+
+## 🔑 Environment Variables
+
+Create a `.env` file in the frontend project:
+
+REACT_APP_API_URL=http://localhost:8080
 
 # 💡 Future Improvements
 
@@ -141,9 +172,6 @@ http://localhost:3000
 
 ---
 
-## 🚀 Live Project
-🔗 Frontend: https://task-diary-frontend.vercel.app  
-🔗 Backend API: https://task-diary-backend-1.onrender.com  
 
 ## 📂 Source Code
 💻 Frontend: https://github.com/sshrrutiiii/task-diary-frontend  
@@ -152,8 +180,11 @@ http://localhost:3000
 # 👩‍💻 Author
 
 **Shruti Dixit**
+Full-Stack Developer  
 
-Full-stack learning project built using **React and Spring Boot**.
+GitHub: https://github.com/sshrrutiiii
+
+Full-stack productivity application built using **React and Spring Boot**.
 
 ---
 
