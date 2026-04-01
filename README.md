@@ -141,6 +141,14 @@ http://localhost:3000
 
 ---
 
+## 🚀 Live Project
+🔗 Frontend: https://task-diary-frontend.vercel.app  
+🔗 Backend API: https://task-diary-backend-1.onrender.com  
+
+## 📂 Source Code
+💻 Frontend: https://github.com/sshrrutiiii/task-diary-frontend  
+💻 Backend: https://github.com/sshrrutiiii/task-diary-backend  
+
 # 👩‍💻 Author
 
 **Shruti Dixit**
