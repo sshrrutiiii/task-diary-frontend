@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 function Login({ setLoggedInUser, onNavigateToSignUp }) {
@@ -8,41 +8,34 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
   const [isError, setIsError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  useEffect(() => {
-  axios.get(process.env.REACT_APP_API_URL);
-}, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     setMessage("Logging in...");
     setIsError(false);
     setLoading(true);
 
-    // ✅ Uses .env variable for backend URL
     axios
-      .post(`${process.env.REACT_APP_API_URL}/api/users/login`, { email, password })
+      .post(`${process.env.REACT_APP_API_URL}/api/users/login`, {
+        email,
+        password,
+      })
       .then((res) => {
         setLoading(false);
-         // ✅ FIXED LOGIN CHECK
-  if (res.data && res.data.email) {
-    setMessage("Login successful!");
-    setIsError(false);
-    setTimeout(() => setLoggedInUser(res.data), 800);
-  } else {
-    setMessage("Invalid email or password!");
-    setIsError(true);
-  }
-}){
+
+        // ✅ FIXED LOGIN CHECK
+        if (res.data && res.data.email) {
           setMessage("Login successful!");
           setIsError(false);
-          setTimeout(() => setLoggedInUser({ email }), 800);
+          setTimeout(() => setLoggedInUser(res.data), 800);
         } else {
           setMessage("Invalid email or password!");
           setIsError(true);
         }
       })
-      .catch((err) => {
-         setLoading(false);
+      .catch(() => {
+        setLoading(false);
         setMessage("Login failed. Server might be down.");
         setIsError(true);
       });
@@ -64,14 +57,16 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
 
   return (
     <div
-    className={`app-container ${localStorage.getItem("isDarkMode") === "true" ? "dark-mode" : ""}`}
+      className={`app-container ${
+        localStorage.getItem("isDarkMode") === "true" ? "dark-mode" : ""
+      }`}
       style={{
         minHeight: "100vh",
         width: "100%",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        background: "rgba(0, 0, 0, 0.4)",
+        background: "transparent", // ✅ FIXED (was blocking video)
         padding: "20px",
         boxSizing: "border-box",
       }}
@@ -143,7 +138,6 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
               color: isError ? "#ff6b6b" : "#4ecdc4",
               fontSize: "0.85rem",
               textAlign: "center",
-              boxSizing: "border-box",
             }}
           >
             {message}
@@ -151,6 +145,7 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
         )}
 
         <form onSubmit={handleSubmit} style={{ width: "100%" }}>
+          {/* ✅ EMAIL VALIDATION */}
           <input
             type="email"
             placeholder="Email"
@@ -158,12 +153,11 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
             onChange={(e) => setEmail(e.target.value)}
             style={inputStyle}
             required
-            onFocus={(e) => (e.target.style.border = "1px solid #ffb6b9")}
-            onBlur={(e) =>
-              (e.target.style.border = "1px solid rgba(255, 255, 255, 0.1)")
-            }
+            pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+            title="Enter a valid email"
           />
 
+          {/* ✅ PASSWORD VALIDATION */}
           <div style={{ position: "relative", width: "100%", marginBottom: "15px" }}>
             <input
               type={showPassword ? "text" : "password"}
@@ -172,10 +166,8 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
               onChange={(e) => setPassword(e.target.value)}
               style={{ ...inputStyle, marginBottom: "0px", paddingRight: "45px" }}
               required
-              onFocus={(e) => (e.target.style.border = "1px solid #ffb6b9")}
-              onBlur={(e) =>
-                (e.target.style.border = "1px solid rgba(255, 255, 255, 0.1)")
-              }
+              pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{6,}$"
+              title="Minimum 6 characters, at least 1 letter and 1 number"
             />
             <span
               onClick={() => setShowPassword(!showPassword)}
@@ -189,14 +181,14 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
                 userSelect: "none",
                 fontSize: "1.1rem",
               }}
-              title={showPassword ? "Hide password" : "Show password"}
             >
               {showPassword ? "🙈" : "👁️"}
             </span>
           </div>
 
           <button
-            type="submit" disabled={loading}
+            type="submit"
+            disabled={loading}
             style={{
               width: "100%",
               padding: "14px",
@@ -208,12 +200,7 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
               fontWeight: "bold",
               cursor: "pointer",
               marginTop: "10px",
-              transition: "background 0.2s ease, transform 0.1s ease",
             }}
-            onMouseOver={(e) => (e.target.style.background = "#45b8b0")}
-            onMouseOut={(e) => (e.target.style.background = "#4ecdc4")}
-            onMouseDown={(e) => (e.target.style.transform = "scale(0.98)")}
-            onMouseUp={(e) => (e.target.style.transform = "scale(1)")}
           >
             {loading ? "Logging in..." : "LOGIN"}
           </button>
@@ -228,13 +215,7 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
             gap: "15px",
           }}
         >
-          <span
-            style={{ cursor: "pointer", transition: "color 0.2s" }}
-            onMouseOver={(e) => (e.target.style.color = "#ffb6b9")}
-            onMouseOut={(e) => (e.target.style.color = "#888")}
-          >
-            Forgot Password?
-          </span>
+          <span>Forgot Password?</span>
           <span>•</span>
           <span
             onClick={onNavigateToSignUp}
