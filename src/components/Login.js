@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function Login({ setLoggedInUser, onNavigateToSignUp }) {
@@ -8,6 +8,9 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
   const [isError, setIsError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  useEffect(() => {
+  axios.get(process.env.REACT_APP_API_URL);
+}, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,7 +44,7 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
     padding: "14px 15px",
     marginBottom: "15px",
     background: "var(--card-bg)",
-    border: "1px solid var(--border-color",
+    border: "1px solid var(--border-color)",
     borderRadius: "8px",
     color: "var(--text-color)",
     fontSize: "0.95rem",
