@@ -9,22 +9,36 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const validateEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // ✅ EMAIL VALIDATION
+    if (!validateEmail(email)) {
+      setMessage("Enter a valid email!");
+      setIsError(true);
+      return;
+    }
+
+    // ✅ PASSWORD VALIDATION
+    if (password.length < 6) {
+      setMessage("Password must be at least 6 characters!");
+      setIsError(true);
+      return;
+    }
 
     setMessage("Logging in...");
     setIsError(false);
     setLoading(true);
 
     axios
-      .post(`${process.env.REACT_APP_API_URL}/api/users/login`, {
-        email,
-        password,
-      })
+      .post(`${process.env.REACT_APP_API_URL}/api/users/login`, { email, password })
       .then((res) => {
         setLoading(false);
 
-        // ✅ FIXED LOGIN CHECK
         if (res.data && res.data.email) {
           setMessage("Login successful!");
           setIsError(false);
@@ -50,102 +64,17 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
     borderRadius: "8px",
     color: "var(--text-color)",
     fontSize: "0.95rem",
-    outline: "none",
-    boxSizing: "border-box",
-    transition: "border 0.2s ease",
   };
 
   return (
-    <div
-      className={`app-container ${
-        localStorage.getItem("isDarkMode") === "true" ? "dark-mode" : ""
-      }`}
-      style={{
-        minHeight: "100vh",
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        background: "transparent", // ✅ FIXED (was blocking video)
-        padding: "20px",
-        boxSizing: "border-box",
-      }}
-    >
-      <div
-        style={{
-          background: "var(--card-bg)",
-          backdropFilter: "blur(15px)",
-          padding: "40px",
-          borderRadius: "20px",
-          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.5)",
-          border: "1px solid rgba(255, 255, 255, 0.1)",
-          width: "100%",
-          maxWidth: "380px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            marginBottom: "15px",
-          }}
-        >
-          <span style={{ fontSize: "2rem" }}>🍵</span>
-          <h1
-            style={{
-              margin: 0,
-              color: "#ffb6b9",
-              fontSize: "2.2rem",
-              fontWeight: "800",
-              letterSpacing: "2px",
-              textShadow: "0 0 15px rgba(255, 182, 185, 0.6)",
-            }}
-          >
-            Mellow
-          </h1>
-        </div>
+    <div className={`app-container ${localStorage.getItem("isDarkMode") === "true" ? "dark-mode" : ""}`}>
+      <div style={{ maxWidth: "380px", margin: "auto", padding: "40px" }}>
 
-        <p
-          style={{
-            color: "var(--text-color)",
-            fontSize: "0.9rem",
-            marginBottom: "25px",
-            textAlign: "center",
-          }}
-        >
-          Welcome back. Ready to focus?
-        </p>
+        <h1 style={{ color: "#ffb6b9" }}>🍵 Mellow</h1>
 
-        {message && (
-          <div
-            style={{
-              width: "100%",
-              padding: "10px",
-              marginBottom: "20px",
-              borderRadius: "8px",
-              background: isError
-                ? "rgba(255, 107, 107, 0.1)"
-                : "rgba(78, 205, 196, 0.1)",
-              border: `1px solid ${
-                isError
-                  ? "rgba(255, 107, 107, 0.3)"
-                  : "rgba(78, 205, 196, 0.3)"
-              }`,
-              color: isError ? "#ff6b6b" : "#4ecdc4",
-              fontSize: "0.85rem",
-              textAlign: "center",
-            }}
-          >
-            {message}
-          </div>
-        )}
+        {message && <p style={{ color: isError ? "red" : "green" }}>{message}</p>}
 
-        <form onSubmit={handleSubmit} style={{ width: "100%" }}>
-          {/* ✅ EMAIL VALIDATION */}
+        <form onSubmit={handleSubmit}>
           <input
             type="email"
             placeholder="Email"
@@ -153,77 +82,25 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
             onChange={(e) => setEmail(e.target.value)}
             style={inputStyle}
             required
-            pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
-            title="Enter a valid email"
           />
 
-          {/* ✅ PASSWORD VALIDATION */}
-          <div style={{ position: "relative", width: "100%", marginBottom: "15px" }}>
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              style={{ ...inputStyle, marginBottom: "0px", paddingRight: "45px" }}
-              required
-              pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{6,}$"
-              title="Minimum 6 characters, at least 1 letter and 1 number"
-            />
-            <span
-              onClick={() => setShowPassword(!showPassword)}
-              style={{
-                position: "absolute",
-                right: "15px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                cursor: "pointer",
-                opacity: 0.7,
-                userSelect: "none",
-                fontSize: "1.1rem",
-              }}
-            >
-              {showPassword ? "🙈" : "👁️"}
-            </span>
-          </div>
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            style={inputStyle}
+            required
+          />
 
-          <button
-            type="submit"
-            disabled={loading}
-            style={{
-              width: "100%",
-              padding: "14px",
-              background: "#4ecdc4",
-              color: "#1a1a1a",
-              border: "none",
-              borderRadius: "8px",
-              fontSize: "1rem",
-              fontWeight: "bold",
-              cursor: "pointer",
-              marginTop: "10px",
-            }}
-          >
+          <button type="submit" disabled={loading}>
             {loading ? "Logging in..." : "LOGIN"}
           </button>
         </form>
 
-        <div
-          style={{
-            marginTop: "25px",
-            fontSize: "0.85rem",
-            color: "#888",
-            display: "flex",
-            gap: "15px",
-          }}
-        >
-          <span>Forgot Password?</span>
-          <span>•</span>
-          <span
-            onClick={onNavigateToSignUp}
-            style={{ cursor: "pointer", color: "#ffb6b9", fontWeight: "bold" }}
-          >
-            Sign Up
-          </span>
-        </div>
+        <p onClick={onNavigateToSignUp} style={{ cursor: "pointer" }}>
+          Sign Up
+        </p>
       </div>
     </div>
   );
