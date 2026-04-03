@@ -57,7 +57,18 @@ function App() {
     localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
   }, [colorTheme, videoTheme, isDarkMode]);
 
+  // 2. Apply dark mode to body ✅ ADD THIS
+useEffect(() => {
+  if (isDarkMode) {
+    document.body.classList.add("dark-mode");
+  } else {
+    document.body.classList.remove("dark-mode");
+  }
+}, [isDarkMode]);
+
+
   useEffect(() => {
+    
     fetchTasks();
   }, []);
 
@@ -158,7 +169,7 @@ function App() {
   return (
     <>
       {videoTheme && (
-        <video key={videoTheme} autoPlay loop muted className="video-background">
+        <video key={videoTheme} autoPlay loop muted playsInline className="video-background">
           <source src={videoMap[videoTheme]} type="video/mp4" />
         </video>
       )}
@@ -176,7 +187,8 @@ function App() {
           />
         )
       ) : (
-        <div className={`app-container ${colorTheme} ${videoTheme ? 'video-mode' : ''} ${isDarkMode ? 'dark-mode' : ''}`}>
+        <div className={`app-container ${colorTheme} ${videoTheme ? 'video-mode' : ''} ${isDarkMode ? 'dark-mode' : ''}`}
+     data-theme={isDarkMode ? "dark" : "light"}>
           <Sidebar currentFilter={filter} setFilter={setFilter} />
           
           <div className="main-content" style={{ position: 'relative' }}>

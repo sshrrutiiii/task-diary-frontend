@@ -23,7 +23,16 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
       .post(`${process.env.REACT_APP_API_URL}/api/users/login`, { email, password })
       .then((res) => {
         setLoading(false);
-        if (res.data.includes("successful")) {
+         // ✅ FIXED LOGIN CHECK
+  if (res.data && res.data.email) {
+    setMessage("Login successful!");
+    setIsError(false);
+    setTimeout(() => setLoggedInUser(res.data), 800);
+  } else {
+    setMessage("Invalid email or password!");
+    setIsError(true);
+  }
+}){
           setMessage("Login successful!");
           setIsError(false);
           setTimeout(() => setLoggedInUser({ email }), 800);

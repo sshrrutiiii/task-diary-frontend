@@ -1,6 +1,10 @@
 /* =========================================
    BASE VARIABLES & RESET
    ========================================= */
+   body.dark-mode {
+  background-color: #1a1a1a !important;
+  color: #f1f1f1 !important;
+}
 :root {
   --bg-color: #f9f9f9;
   --text-color: #333;
