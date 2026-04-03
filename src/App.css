@@ -449,3 +449,58 @@ body {
   font-weight: bold !important;
   border-radius: 6px !important;
 }
+@media (max-width: 768px) {
+  /* Stack layout vertically */
+  .dashboard-layout {
+    flex-direction: column;
+    padding: 15px;
+    gap: 15px;
+  }
+
+  /* Hide sidebar (important) */
+  .app-sidebar {
+    display: none;
+  }
+
+  /* Full width sections */
+  .task-section,
+  .calendar-section {
+    width: 100%;
+  }
+
+  /* Header padding smaller */
+  .app-header {
+    padding: 10px 15px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  /* Reduce main padding */
+  .main-content {
+    padding: 10px;
+  }
+
+  /* Fix buttons and inputs */
+  .add-task-form {
+    flex-direction: column;
+  }
+
+  .add-task-form input,
+  .add-task-form select,
+  .add-task-form button {
+    width: 100%;
+  }
+
+  /* Task cards spacing */
+  .task-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  /* Calendar section spacing */
+  .calendar-section {
+    margin-top: 10px;
+  }
+}

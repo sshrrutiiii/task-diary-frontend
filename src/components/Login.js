@@ -7,16 +7,19 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setMessage("Logging in...");
     setIsError(false);
+    setLoading(true);
 
     // ✅ Uses .env variable for backend URL
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/users/login`, { email, password })
       .then((res) => {
+        setLoading(false);
         if (res.data.includes("successful")) {
           setMessage("Login successful!");
           setIsError(false);
@@ -27,6 +30,7 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
         }
       })
       .catch((err) => {
+         setLoading(false);
         setMessage("Login failed. Server might be down.");
         setIsError(true);
       });
@@ -36,10 +40,10 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
     width: "100%",
     padding: "14px 15px",
     marginBottom: "15px",
-    background: "rgba(0, 0, 0, 0.3)",
-    border: "1px solid rgba(255, 255, 255, 0.1)",
+    background: "var(--card-bg)",
+    border: "1px solid var(--border-color",
     borderRadius: "8px",
-    color: "#fff",
+    color: "var(--text-color)",
     fontSize: "0.95rem",
     outline: "none",
     boxSizing: "border-box",
@@ -48,6 +52,7 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
 
   return (
     <div
+    className={`app-container ${localStorage.getItem("isDarkMode") === "true" ? "dark-mode" : ""}`}
       style={{
         minHeight: "100vh",
         width: "100%",
@@ -61,7 +66,7 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
     >
       <div
         style={{
-          background: "rgba(20, 20, 20, 0.85)",
+          background: "var(--card-bg)",
           backdropFilter: "blur(15px)",
           padding: "40px",
           borderRadius: "20px",
@@ -99,7 +104,7 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
 
         <p
           style={{
-            color: "#ccc",
+            color: "var(--text-color)",
             fontSize: "0.9rem",
             marginBottom: "25px",
             textAlign: "center",
@@ -179,7 +184,7 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
           </div>
 
           <button
-            type="submit"
+            type="submit" disabled={loading}
             style={{
               width: "100%",
               padding: "14px",
@@ -198,7 +203,7 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
             onMouseDown={(e) => (e.target.style.transform = "scale(0.98)")}
             onMouseUp={(e) => (e.target.style.transform = "scale(1)")}
           >
-            LOGIN
+            {loading ? "Logging in..." : "LOGIN"}
           </button>
         </form>
 
