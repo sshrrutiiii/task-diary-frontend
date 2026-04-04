@@ -54,13 +54,13 @@ function App() {
     localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
   }, [colorTheme, videoTheme, isDarkMode]);
 
-  useEffect(() => {
-    if (colorTheme === 'Dark') {
-      document.body.classList.add("dark-mode");
-    } else {
-      document.body.classList.remove("dark-mode");
-    }
-  }, [colorTheme]);
+ useEffect(() => {
+  if (isDarkMode) {
+    document.body.classList.add("dark-mode");
+  } else {
+    document.body.classList.remove("dark-mode");
+  }
+}, [isDarkMode]);
   useEffect(() => { fetchTasks(); }, []);
 
   const fetchTasks = async () => {

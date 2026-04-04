@@ -1,40 +1,28 @@
 /* =========================================
    BASE VARIABLES & RESET
    ========================================= */
-   body.dark-mode {
-  background-color: #1a1a1a !important;
-  color: #f1f1f1 !important;
-}
+ 
 :root {
   --bg-color: #f9f9f9;
   --text-color: #333;
   --sidebar-bg: #fff;
   --card-bg: #fff;
-  --primary-color: #e6c280; /* Beige default */
+  --primary-color: #e6c280;
   --border-color: #eaeaea;
 }
 
-/* Dark Mode Overrides */
-.dark-mode {
-  --bg-color: #1a1a1a;
-  --text-color: #f1f1f1;
-  --sidebar-bg: #222;
-  --card-bg: #2a2a2a;
-  --border-color: #444;
-  --primary-color: #a0a0a0; 
-}
+/* Dark Mode */
+body.dark-mode {
+  --bg-color: #121212;
+  --text-color: #f5f5f5;
+  --sidebar-bg: #1e1e1e;
+  --card-bg: rgba(30, 30, 30, 0.9);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --primary-color: #ffb6b9;
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
-
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  overflow-x: hidden;
-}
-
 /* =========================================
    THEME COLORS (Matches App.js dropdown)
    ========================================= */
