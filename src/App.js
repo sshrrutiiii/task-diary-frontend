@@ -55,13 +55,12 @@ function App() {
   }, [colorTheme, videoTheme, isDarkMode]);
 
   useEffect(() => {
-    if (isDarkMode) {
+    if (colorTheme === 'Dark') {
       document.body.classList.add("dark-mode");
     } else {
       document.body.classList.remove("dark-mode");
     }
-  }, [isDarkMode]);
-
+  }, [colorTheme]);
   useEffect(() => { fetchTasks(); }, []);
 
   const fetchTasks = async () => {
@@ -127,11 +126,17 @@ function App() {
   const pendingTasks = safeTasks.filter(t => !t.isCompleted && !t.completed);
 
   return (
-    <>
-      {videoTheme && (
-        <video key={videoTheme} autoPlay loop muted playsInline className="video-background">
-          {/* ✅ Fix 2: Allows uploaded custom videos to play properly */}
-          <source src={videoMap[videoTheme] || videoTheme} type="video/mp4" />
+    <>{videoTheme && (
+        <video 
+          key={videoTheme} /* This key forces the video to refresh when uploaded */
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          className="video-background"
+        >
+          {/* Checks if it's a built-in video or a custom uploaded blob URL */}
+          <source src={videoMap[videoTheme] ? videoMap[videoTheme] : videoTheme} type="video/mp4" />
         </video>
       )}
 

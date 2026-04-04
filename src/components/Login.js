@@ -10,7 +10,9 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
   const [loading, setLoading] = useState(false);
 
   const validateEmail = (email) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    // This forces a valid format like name@domain.com
+    const strictRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return strictRegex.test(email);
   };
 
   const handleSubmit = (e) => {
