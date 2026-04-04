@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-function Header({ colorTheme, setColorTheme, videoTheme, setVideoTheme, onVideoUpload, onRemindersClick, onZenBreakClick }) {
+function Header({ colorTheme, setColorTheme, videoTheme, setVideoTheme, onVideoUpload, onRemindersClick, isDarkMode, setIsDarkMode }) {
   const fileInputRef = useRef(null);
 
   return (
@@ -15,13 +15,12 @@ function Header({ colorTheme, setColorTheme, videoTheme, setVideoTheme, onVideoU
           <select value={colorTheme} onChange={(e) => setColorTheme(e.target.value)} style={{ background: 'var(--bg-color, rgba(0,0,0,0.5))', color: 'var(--text-color, #fff)', border: '1px solid var(--border-color, rgba(255,255,255,0.2))', padding: '5px 10px', borderRadius: '8px', outline: 'none', cursor: 'pointer' }}>
             <option value="theme-beige">Beige</option>
             <option value="theme-pink">Pink</option>
-            <option value="theme-dark">Dark</option>
             <option value="theme-matchagreen">Matcha Green</option>
             <option value="theme-oceanblue">Ocean Blue</option>
           </select>
         </div>
 
-        {/* Video Dropdown */}
+        {/* Video Dropdown & Upload */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <label style={{ color: 'var(--text-color, #fff)', fontSize: '0.9rem', fontWeight: 'bold' }}>Video:</label>
           <select value={videoTheme} onChange={(e) => setVideoTheme(e.target.value)} style={{ background: 'var(--bg-color, rgba(0,0,0,0.5))', color: 'var(--text-color, #fff)', border: '1px solid var(--border-color, rgba(255,255,255,0.2))', padding: '5px 10px', borderRadius: '8px', outline: 'none', cursor: 'pointer' }}>
@@ -33,28 +32,27 @@ function Header({ colorTheme, setColorTheme, videoTheme, setVideoTheme, onVideoU
             <option value="video-5">Anime Cozy 5</option>
             <option value="video-6">Anime Room 6</option>
             <option value="video-7">Anime Desk 7</option>
-            <option value="custom">Custom Upload...</option>
           </select>
           
           <input type="file" accept="video/mp4" ref={fileInputRef} style={{ display: 'none' }} onChange={onVideoUpload} />
           <button 
             onClick={() => fileInputRef.current.click()}
             style={{ background: 'transparent', border: '1px solid var(--primary-color, #4ecdc4)', color: 'var(--primary-color, #4ecdc4)', padding: '5px 10px', borderRadius: '8px', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 'bold' }}
-            title="Upload your own background video (.mp4)"
           >
             + Upload MP4
           </button>
         </div>
 
-        {/* Restored Reminders & Zen Break Buttons */}
+        {/* Reminders & Dark Mode Toggle */}
         <div style={{ display: 'flex', gap: '10px', marginLeft: '10px' }}>
-          <button 
-            onClick={onRemindersClick}
-            style={{ background: 'rgba(0,0,0,0.5)', color: '#fff', border: '1px solid rgba(255,255,255,0.2)', padding: '6px 15px', borderRadius: '20px', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontSize: '0.85rem' }}
-          >
-            🔔 Reminders <span style={{ background: '#ff6b6b', color: 'white', borderRadius: '50%', padding: '2px 6px', fontSize: '0.7rem', fontWeight: 'bold' }}>1</span>
+          <button onClick={onRemindersClick} style={{ background: 'rgba(0,0,0,0.5)', color: '#fff', border: '1px solid rgba(255,255,255,0.2)', padding: '6px 15px', borderRadius: '20px', cursor: 'pointer', fontSize: '0.85rem' }}>
+            🔔 Reminders
           </button>
           
+          {/* ✅ Fix 3: Sun/Moon button restored here */}
+          <button onClick={() => setIsDarkMode(!isDarkMode)} style={{ background: 'transparent', border: 'none', fontSize: '1.2rem', cursor: 'pointer' }} title="Toggle Dark Mode">
+            {isDarkMode ? "☀️" : "🌙"}
+          </button>
         </div>
 
       </div>
