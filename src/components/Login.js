@@ -6,7 +6,7 @@ function Login({ setLoggedInUser, onNavigateToSignUp }) {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword,] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const validateEmail = (email) => {
