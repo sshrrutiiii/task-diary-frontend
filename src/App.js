@@ -147,7 +147,7 @@ function App() {
           <Login setLoggedInUser={setLoggedInUser} onNavigateToSignUp={() => setShowSignUp(true)} />
         )
       ) : (
-        <div className={`app-container ${colorTheme} ${videoTheme ? 'video-mode' : ''}`} data-theme={isDarkMode ? "dark" : "light"}>
+        <div className={`app-container ${colorTheme} ${videoTheme ? 'video-mode' : ''} ${isDarkMode ? 'dark-mode' : ''}`}>
           <Sidebar currentFilter={filter} setFilter={setFilter} />
           
           <div className="main-content" style={{ position: 'relative' }}>
